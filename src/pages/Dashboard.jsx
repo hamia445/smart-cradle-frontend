@@ -115,14 +115,16 @@ const Dashboard = () => {
   }, [isRocking, timeLeft]);
 
   const handleStart = (selectedSpeed) => {
+    if (!userId) return;
     const cmd = selectedSpeed.toUpperCase().trim();
-    update(ref(db, 'Cradle'), { MotorCommand: cmd, TimerDuration: 600, TimerStart: Date.now() / 1000, CurrentStatus: "Rocking..." });
+    update(ref(db, `users/${userId}/Cradle`), { MotorCommand: cmd, TimerDuration: 600, TimerStart: Date.now() / 1000, CurrentStatus: "Rocking..." });
     if (timeLeft <= 0) setTimeLeft(600);
     setIsRocking(true);
   };
 
   const handleStop = () => {
-    update(ref(db, 'Cradle'), { MotorCommand: "OFF", TimerDuration: 0, TimerStart: 0, CurrentStatus: "sleeping" });
+    if (!userId) return;
+    update(ref(db, `users/${userId}/Cradle`), { MotorCommand: "OFF", TimerDuration: 0, TimerStart: 0, CurrentStatus: "sleeping" });
     setTimeLeft(0); setIsRocking(false); setPrediction("sleeping");
   };
 
@@ -145,7 +147,7 @@ const Dashboard = () => {
       });
     }, 5000);
 
-    const unsubscribeCradle = onValue(ref(db, 'Cradle'), (snapshot) => {
+    const unsubscribeCradle = onValue(ref(db, `users/${userId}/Cradle`), (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
         setLastSeen(Date.now());
@@ -208,7 +210,7 @@ const Dashboard = () => {
     };
   }, [userId, theme]);
 
-  // SMART LOGIC: Firebase se direct specific date ka data lana
+  
   useEffect(() => {
     if (!userId) return;
     
@@ -216,9 +218,9 @@ const Dashboard = () => {
     if (filterDate) {
       const [year, month, day] = filterDate.split("-");
       const formattedFilterDate = `${month}/${day}/${year}`; 
-      historyQuery = query(ref(db, `Cradle/History`), orderByChild('Date'), equalTo(formattedFilterDate));
+      historyQuery = query(ref(db, `users/${userId}/Cradle/History`), orderByChild('Date'), equalTo(formattedFilterDate));
     } else {
-      historyQuery = query(ref(db, `Cradle/History`), limitToLast(20));
+      historyQuery = query(ref(db, `users/${userId}/Cradle/History`), limitToLast(20));
     }
 
     const unsubscribe = onValue(historyQuery, (s) => {
@@ -280,7 +282,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-            )) : <p style={{textAlign: 'center', color: 'var(--text-sub)'}}>{text[lang].noRecords}</p>}
+            ))} : <p style={{textAlign: 'center', color: 'var(--text-sub)'}}>{text[lang].noRecords}</p>}
           </div>
         </div>
       );
