@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Arabic:wght@400;700&display=swap');
 
-/* --- 1. VARIABLES & THEMES --- */
 :root {
   --bg-main: radial-gradient(circle at top left, #f3d9fa 0%, #fde2e4 35%, #e0f2fe 70%);
   --card-bg: rgba(255, 255, 255, 0.85);
@@ -22,7 +21,6 @@
   --glass-border: rgba(255, 255, 255, 0.08);
 }
 
-/* --- 2. GLOBAL RESET --- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -59,7 +57,6 @@ body {
   gap: 20px;
 }
 
-/* --- 3. MANDATORY SETUP CARD (IMAGE STYLE) --- */
 .setup-overlay-full {
   position: fixed;
   top: 0; left: 0; 
@@ -81,12 +78,10 @@ body {
 .setup-title { color: #1a237e; font-size: 24px; font-weight: 800; margin-bottom: 8px; }
 .setup-subtitle { color: #78909c; font-size: 13px; margin-bottom: 25px; }
 
-/* Segmented Switch for Gender */
 .gender-switch { display: flex; background: #f5f7f9; padding: 5px; border-radius: 15px; margin-bottom: 20px; }
 .gender-switch button { flex: 1; border: none; padding: 10px; border-radius: 12px; background: transparent; color: #78909c; font-weight: 600; cursor: pointer; transition: 0.3s; }
 .gender-switch button.active { background: #ffffff; color: #03a9f4; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
-/* Setup Form Styles */
 .setup-form { display: flex; flex-direction: column; gap: 15px; }
 .setup-input { width: 100%; padding: 14px 20px; border-radius: 12px; border: 1px solid #eceff1; font-size: 14px; outline: none; transition: 0.3s; }
 .setup-input:focus { border-color: #03a9f4; }
@@ -101,7 +96,6 @@ body {
 }
 .setup-submit-btn:hover { transform: translateY(-2px); background: #0288d1; }
 
-/* --- 4. HEADER & PROFILE --- */
 .main-header-8d {
   width: 100%;
   display: flex;
@@ -157,7 +151,6 @@ body {
   border: 1px solid var(--glass-border);
 }
 
-/* --- 5. HERO PREDICTION CARD --- */
 .hero-display-8d {
   width: 100%;
   position: relative;
@@ -227,17 +220,16 @@ body {
   border: 1px solid var(--glass-border);
 }
 
-/* --- 6. SENSOR GRID --- */
 .sensor-grid-8d {
   display: grid;
- grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  width: 134%;
+  width: 100%;
 }
 
 .glass-stat-card {
   background: var(--card-bg);
-  padding: 20px;
+  padding: 20px 10px;
   border-radius: 28px;
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(10px);
@@ -245,13 +237,13 @@ body {
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  text-align: center;
+  min-width: 0;
 }
 
-/* This makes the 3rd card (Humidity) stretch full width nicely */
-/* Is section ko update karein */
 .glass-stat-card:nth-child(3) {
-  grid-column: span 1; /* Span 2 ko hata kar 1 kar dein */
-  flex-direction: column; /* Row ko wapis column kar dein taake icon upar aur text niche aye */
+  grid-column: span 1; 
+  flex-direction: column; 
   justify-content: center;
   gap: 10px;
 }
@@ -268,10 +260,9 @@ body {
 .motion-glow { background: rgba(79, 195, 247, 0.15); color: #4fc3f7; }
 .humid-glow { background: rgba(14, 165, 233, 0.15); color: #0ea5e9; }
 
-.stat-label { font-size: 11px; font-weight: 700; color: var(--text-sub); }
+.stat-label { font-size: 11px; font-weight: 700; color: var(--text-sub); word-wrap: break-word; width: 100%; }
 .stat-number { font-size: 24px; font-weight: 800; color: var(--text-main); }
 
-/* --- 7. MANUAL CONTROLS & MIC --- */
 .manual-deck-8d {
   width: 100%;
   background: var(--card-bg);
@@ -356,7 +347,6 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* --- 8. HISTORY & DOCK NAV --- */
 .history-card-8d {
   width: 100%;
   background: var(--card-bg);
@@ -408,7 +398,6 @@ body {
 
 .dock-link.active { color: var(--accent); transform: translateY(-2px); }
 
-/* --- 9. VOICE MODAL & ANIMATIONS --- */
 .voice-modal-8d {
   position: fixed;
   inset: 0;
