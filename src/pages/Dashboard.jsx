@@ -270,19 +270,23 @@ const Dashboard = () => {
           </div>
 
           <div className="log-scroll-area">
-            {filteredLogs.length > 0 ? filteredLogs.map((log, i) => (
-              <div key={i} className="log-item-8d">
-                <div className="avatar-neon" style={{width: 35, height: 35, flexShrink: 0}}><Clock size={16}/></div>
-                <div>
-                  <div style={{fontWeight: 700, color: 'var(--text-main)'}}>
-                    {log.Status ? log.Status.toUpperCase() : "UNKNOWN"}
-                  </div>
-                  <div style={{fontSize: '12px', color: 'var(--text-sub)'}}>
-                    Date: {log.Date} | Time: {log.Timestamp}
+            {filteredLogs.length > 0 ? (
+              filteredLogs.map((log, i) => (
+                <div key={i} className="log-item-8d">
+                  <div className="avatar-neon" style={{width: 35, height: 35, flexShrink: 0}}><Clock size={16}/></div>
+                  <div>
+                    <div style={{fontWeight: 700, color: 'var(--text-main)'}}>
+                      {log.Status ? log.Status.toUpperCase() : "UNKNOWN"}
+                    </div>
+                    <div style={{fontSize: '12px', color: 'var(--text-sub)'}}>
+                      Date: {log.Date} | Time: {log.Timestamp}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))} : <p style={{textAlign: 'center', color: 'var(--text-sub)'}}>{text[lang].noRecords}</p>}
+              ))
+            ) : (
+              <p style={{textAlign: 'center', color: 'var(--text-sub)'}}>{text[lang].noRecords}</p>
+            )}
           </div>
         </div>
       );
