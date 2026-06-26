@@ -39,12 +39,18 @@
 body {
   overflow-x: hidden;
   background: var(--bg-main);
+  height: 100%;
 }
 
 .dashboard-container {
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
-  padding: 20px 20px 100px 20px;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 20px 110px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -232,7 +238,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  width: 100%; /* Fix: Isko 134% se 100% kar diya gaya hai */
+  width: 100%; 
 }
 
 .glass-stat-card {
@@ -435,5 +441,5 @@ body {
 
 @media (min-width: 1024px) {
   .main-content-area { max-width: 1000px; }
-  .sensor-grid-8d { grid-template-columns: repeat(3, 1fr); } /* Fix: Isko 4 ki jagah 3 kiya gaya hai */
+  .sensor-grid-8d { grid-template-columns: repeat(3, 1fr); } 
 }
